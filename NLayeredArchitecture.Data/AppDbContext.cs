@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NLayeredArchitecture.Core.Models;
 using NLayeredArchitecture.Data.Configurations;
+using NLayeredArchitecture.Data.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,9 @@ namespace NLayeredArchitecture.Data
         {
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+
+            modelBuilder.ApplyConfiguration(new ProductSeed(new int[] { 1, 2 }));
+            modelBuilder.ApplyConfiguration(new CategorySeed(new int[] { 1, 2 }));
         }
     }
 }

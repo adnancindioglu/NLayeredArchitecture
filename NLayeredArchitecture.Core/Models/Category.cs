@@ -7,7 +7,7 @@ namespace NLayeredArchitecture.Core.Models
 {
     public class Category
     {
-        Category()
+        public Category()
         {
             Products = new Collection<Product>();
         }
