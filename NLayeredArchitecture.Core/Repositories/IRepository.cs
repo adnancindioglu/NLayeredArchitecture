@@ -13,7 +13,7 @@ namespace NLayeredArchitecture.Core.Repositories
         //Tüm veriyi getir
         Task<IEnumerator<TEntity>> GetAllAsync();
         //Parametreye göre veri getir
-        Task<IEnumerator<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
+        IEnumerator<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
         //Parametreye göre tek veri getir
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         //Veri ekleme işlemi
@@ -25,7 +25,7 @@ namespace NLayeredArchitecture.Core.Repositories
         //Toplu veri silme işlemi
         void RemoveRange(IEnumerable<TEntity> entities);
         //Veri güncelleme
-        Task<TEntity> Update(TEntity entity);
+        TEntity Update(TEntity entity);
     
     }
 }
