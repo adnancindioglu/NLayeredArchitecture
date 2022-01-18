@@ -13,18 +13,18 @@ namespace NLayeredArchitecture.Core.Services
         //Tüm veriyi getir
         Task<IEnumerator<TEntity>> GetAllAsync();
         //Parametreye göre veri getir
-        Task<IEnumerator<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerator<TEntity>> Where(Expression<Func<TEntity, bool>> predicate);
         //Parametreye göre tek veri getir
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         //Veri ekleme işlemi
-        Task AddAsync(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
         //Toplu veri ekleme işlemi
-        Task AddRangeAsync(IEnumerable<TEntity> entities);
+        Task<IEnumerator<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);
         //Veri silme işlemi
         void Remove(TEntity entity);
         //Toplu veri silme işlemi
         void RemoveRange(IEnumerable<TEntity> entities);
         //Veri güncelleme
-        Task<TEntity> Update(TEntity entity);
+        TEntity Update(TEntity entity);
     }
 }

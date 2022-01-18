@@ -13,24 +13,26 @@ namespace NLayeredArchitecture.Data.Repositories
     {
         protected readonly DbContext _context;
         private readonly DbSet<TEntity> _dbset;
-        public Repository(DbContext context)
+        public Repository(AppDbContext context)
         {
             _context = context;
             _dbset = context.Set<TEntity>();
         }
-        public async Task AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
             await _dbset.AddAsync(entity);
+            return entity;
         }
 
-        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
+        public async Task<IEnumerator<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities)
         {
             await _dbset.AddRangeAsync(entities);
+            return (IEnumerator<TEntity>)entities;
         }
 
-        public IEnumerator<TEntity> Where(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerator<TEntity>> Where(Expression<Func<TEntity, bool>> predicate)
         {
-            return (IEnumerator<TEntity>)_dbset.Where(predicate);
+            return (IEnumerator<TEntity>)await _dbset.Where(predicate).ToListAsync();
         }
 
         public async Task<IEnumerator<TEntity>> GetAllAsync()
