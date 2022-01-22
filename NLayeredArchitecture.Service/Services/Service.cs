@@ -33,7 +33,7 @@ namespace NLayeredArchitecture.Service.Services
             return (IEnumerator<TEntity>)entities;
         }
 
-        public async Task<IEnumerator<TEntity>> GetAllAsync()
+        public async Task<List<TEntity>> GetAllAsync()
         {
             return await _repository.GetAllAsync();
         }
@@ -46,6 +46,7 @@ namespace NLayeredArchitecture.Service.Services
         public void Remove(TEntity entity)
         {
             _repository.Remove(entity);
+            _unitOfWork.Commit();
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)

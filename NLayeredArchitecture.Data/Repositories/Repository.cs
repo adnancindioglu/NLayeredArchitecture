@@ -35,9 +35,9 @@ namespace NLayeredArchitecture.Data.Repositories
             return (IEnumerator<TEntity>)await _dbset.Where(predicate).ToListAsync();
         }
 
-        public async Task<IEnumerator<TEntity>> GetAllAsync()
+        public async Task<List<TEntity>> GetAllAsync()
         {
-            return (IEnumerator<TEntity>)await _dbset.ToListAsync();
+            return await _dbset.ToListAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(int Id)

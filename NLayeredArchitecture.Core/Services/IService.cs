@@ -11,7 +11,7 @@ namespace NLayeredArchitecture.Core.Services
         //Id ye göre veri getir
         Task<TEntity> GetByIdAsync(int Id);
         //Tüm veriyi getir
-        Task<IEnumerator<TEntity>> GetAllAsync();
+        Task<List<TEntity>> GetAllAsync();
         //Parametreye göre veri getir
         Task<IEnumerator<TEntity>> Where(Expression<Func<TEntity, bool>> predicate);
         //Parametreye göre tek veri getir
